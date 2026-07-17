@@ -476,31 +476,77 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 .tier-btn { width: 100%; }
 .pricing-foot { margin-top: 2.2rem; color: var(--body); font-size: 0.98rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
 
-/* ---------- Work / the range reel ---------- */
-.reel { position: relative; margin: 0; }
-.reel-media {
-  position: relative; z-index: 1;
-  display: block; width: 100%; height: auto;
-  aspect-ratio: 16 / 9; object-fit: cover;
-  background: var(--bg-2);
+/* ---------- Before-and-after comparison ---------- */
+.comparison { margin: 0; }
+.comparison-frame {
+  --comparison-position: 50%;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  border: 1px solid var(--line);
+  background: var(--ink);
   box-shadow: var(--shadow-lg);
+  isolation: isolate;
+  touch-action: pan-y;
 }
-/* The arch, once more — a brass hairline ringing the reel */
-.reel-echo {
-  position: absolute; z-index: 0;
-  inset: -16px -16px -22px -16px;
-  border: 1px solid rgba(138, 101, 41, 0.28);
-  border-radius: 20px;
+.comparison-image {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  user-select: none; pointer-events: none;
+}
+.comparison-before {
+  z-index: 1;
+  clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+}
+.comparison-label {
+  position: absolute; top: 1rem; z-index: 2;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(22, 40, 60, 0.82);
+  color: #FFFFFF;
+  font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+}
+.comparison-label-before { left: 1rem; }
+.comparison-label-after { right: 1rem; }
+.comparison-divider {
+  position: absolute; z-index: 3; top: 0; bottom: 0;
+  left: var(--comparison-position); width: 2px;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(22, 40, 60, 0.18), 0 0 14px rgba(22, 40, 60, 0.3);
   pointer-events: none;
 }
-.reel-cap {
-  position: relative; z-index: 1;
+.comparison-handle {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center; gap: 0.25rem;
+  width: 54px; height: 54px;
+  border: 2px solid #FFFFFF; border-radius: 50%;
+  background: var(--brass); color: #FFFFFF;
+  font-family: var(--f-mono); font-size: 0.85rem;
+  box-shadow: var(--shadow-md);
+}
+.comparison-range {
+  position: absolute; z-index: 4; inset: 0;
+  width: 100%; height: 100%; margin: 0;
+  opacity: 0; cursor: ew-resize;
+}
+.comparison-range:focus-visible { outline: none; }
+.comparison-frame:focus-within .comparison-handle {
+  outline: 3px solid var(--brass-lit);
+  outline-offset: 3px;
+}
+.comparison-caption {
   margin-top: 1.5rem;
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 2rem;
   color: var(--muted); font-size: 0.9rem;
 }
+.comparison-caption strong { color: var(--ink); }
 
 /* ---------- Studio panel ---------- */
 .studio-head { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2rem 3.5rem; align-items: end; margin-bottom: clamp(2.25rem, 4vw, 3.25rem); }
@@ -617,12 +663,16 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
   .link-mono { width: auto; }
   .contact-actions { gap: 1.1rem; }
   .contact-email { max-width: 100%; overflow-wrap: anywhere; }
+  .comparison-label { top: 0.65rem; padding: 0.28rem 0.55rem; font-size: 0.6rem; }
+  .comparison-label-before { left: 0.65rem; }
+  .comparison-label-after { right: 0.65rem; }
+  .comparison-handle { width: 44px; height: 44px; font-size: 0.72rem; }
+  .comparison-caption { align-items: flex-start; }
   .hero-visual { max-width: 100%; justify-self: stretch; }
   /* No echo at full-bleed width: an outward inset breaches the gutter, and an
      inward one hides its arc behind the photo and reads as a stray rectangle.
      The arch alone carries the motif here. */
   .arch-echo { display: none; }
-  .reel-echo { display: none; }
   .panel-head { column-gap: 1rem; }
   .principles li { grid-template-columns: 1fr; gap: 0.25rem; }
   .footer-inner { align-items: flex-start; }

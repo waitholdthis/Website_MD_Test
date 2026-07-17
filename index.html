@@ -308,20 +308,34 @@
         </p>
       </div>
 
-      <!--
-        This reel is ILLUSTRATIVE — a range of church styles, not client projects.
-        The caption says so on purpose; don't remove it while that's still true.
-        When real churches launch, this is the place for them.
-      -->
-      <figure class="reel">
-        <span class="reel-echo" aria-hidden="true"></span>
-        <video class="reel-media" poster="assets/video/range-poster.webp"
-               muted loop playsinline preload="none" data-lazyplay aria-hidden="true">
-          <source src="assets/video/range.mp4" type="video/mp4" />
-        </video>
-        <figcaption class="reel-cap">
-          <span>Illustrative of the range we design for &mdash; real church sites land here as they launch.</span>
-          <a class="link-mono" href="#contact">Be the first <span aria-hidden="true">&rarr;</span></a>
+      <!-- Keep both screenshots at the same visual crop so the comparison stays aligned. -->
+      <figure class="comparison">
+        <div class="comparison-frame" data-comparison style="--comparison-position: 50%;">
+          <img class="comparison-image comparison-after"
+               src="assets/img/st-ann-after.webp"
+               alt="The redesigned St. Ann Catholic Church homepage"
+               width="1600" height="871" loading="lazy" decoding="async" />
+          <img class="comparison-image comparison-before"
+               src="assets/img/st-ann-before.webp"
+               alt=""
+               width="1349" height="887" loading="lazy" decoding="async" />
+
+          <span class="comparison-label comparison-label-before" aria-hidden="true">Before</span>
+          <span class="comparison-label comparison-label-after" aria-hidden="true">After</span>
+
+          <div class="comparison-divider" aria-hidden="true">
+            <span class="comparison-handle">
+              <span>&larr;</span><span>&rarr;</span>
+            </span>
+          </div>
+
+          <input class="comparison-range" type="range" min="0" max="100" value="50"
+                 aria-label="Compare the old and redesigned St. Ann church websites"
+                 aria-valuetext="Half before design and half after design" />
+        </div>
+        <figcaption class="comparison-caption">
+          <span><strong>St. Ann Catholic Church</strong> &mdash; drag the handle to compare the old site with the redesign.</span>
+          <a class="link-mono" href="#contact">Transform your site <span aria-hidden="true">&rarr;</span></a>
         </figcaption>
       </figure>
     </div>

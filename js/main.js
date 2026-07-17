@@ -42,7 +42,7 @@
   /* Video.
      - Reduced motion: never play. The poster is a real frame, so the page still reads.
      - Below the fold: only fetch and play once seen, and pause again when it leaves.
-       Autoplaying three clips at once would cost more than the whole rest of the page. */
+       Autoplaying multiple clips at once would cost more than the whole rest of the page. */
   var videos = document.querySelectorAll('video');
   if (prefersReduced) {
     Array.prototype.forEach.call(videos, function (v) {
@@ -65,6 +65,22 @@
     }, { threshold: 0.2 });
     Array.prototype.forEach.call(lazyVideos, function (v) { vio.observe(v); });
   }
+
+  /* Before/after comparison. The native range input supplies pointer, touch,
+     and keyboard controls; CSS only handles the visual clipping. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-comparison]'), function (comparison) {
+    var range = comparison.querySelector('.comparison-range');
+    if (!range) return;
+
+    var updateComparison = function () {
+      var before = Number(range.value);
+      comparison.style.setProperty('--comparison-position', before + '%');
+      range.setAttribute('aria-valuetext', before + '% before design and ' + (100 - before) + '% after design');
+    };
+
+    range.addEventListener('input', updateComparison);
+    updateComparison();
+  });
 
   /* Placeholder links — no jump-to-top until real URLs land. */
   Array.prototype.forEach.call(document.querySelectorAll('a[href="#"]'), function (link) {

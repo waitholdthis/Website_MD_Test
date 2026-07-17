@@ -70,7 +70,7 @@ ffmpeg -i videos/Hero_Church.mp4 -vf "crop=576:720:352:0" -an \
   -c:v libx264 -crf 30 -preset slow -pix_fmt yuv420p -movflags +faststart \
   assets/video/hero-church.mp4
 
-# wide clips (strip / reel)
+# wide clip (strip)
 ffmpeg -i videos/River.mp4 -vf "scale=1120:-2" -an \
   -c:v libx264 -crf 32 -preset slow -pix_fmt yuv420p -movflags +faststart \
   assets/video/river.mp4
@@ -81,11 +81,11 @@ hero autoplays; the rest carry `data-lazyplay` and are fetched and played by
 `js/main.js` when scrolled into view, then paused on exit. Under
 `prefers-reduced-motion` nothing plays and the posters stand in.
 
-**Weight budget:** ~530 KB above the fold (core + hero video), ~2.7 MB if a
+**Weight budget:** ~530 KB above the fold (core + hero video), ~2 MB if a
 visitor scrolls the whole page. Keep it there — if you add a clip, take one away.
 
 Page sections, in order: hero → start here (the five problems churches arrive
-with) → process band → what's included + integrations → pricing → work →
+with) → process band → what's included + integrations → pricing → before/after work →
 who you work with → contact.
 
 ## Run it
@@ -99,12 +99,8 @@ python3 -m http.server 8000
 
 ## Before this goes live
 
-- **The `#work` section is illustrative, not a portfolio.** The reel shows a
-  *range* of church styles; its caption says so in as many words. That caption is
-  load-bearing honesty — the model projects the first client in Month 1, so there
-  is no client work yet. Don't delete the caption while that's still true, and
-  don't relabel the reel as "our work." When real churches launch, replace the
-  reel with them.
+- **The `#work` section uses a real before/after comparison.** Keep the church
+  name and Before/After labels accurate whenever the screenshots are replaced.
 - **The imagery is stock/generated, not photographs of clients.** Fine as
   atmosphere; it stops being fine the moment a caption implies otherwise.
 
@@ -114,9 +110,10 @@ Contact is live: `tootiedesigns18@gmail.com` in the `#contact` section (two
 
 ## Customising
 
-- **Add a real church:** copy a `<li>` in the `.work-grid` (in `index.html`), set
-  `href` to the live URL, choose a card tint (`card--warm` / `card--cool` /
-  `card--sage` / `card--neutral`), and adjust the three `swatches` colours.
+- **Change the comparison:** replace `assets/img/st-ann-before.webp` and
+  `assets/img/st-ann-after.webp`, then update the church name and image
+  descriptions in the `.comparison` markup in `index.html`. Use screenshots
+  with the same viewport dimensions for the cleanest wipe.
 - **Change pricing:** the three `.tier` cards in the `#pricing` section. Keep them
   in sync with the `Assumptions` tab of the business model workbook.
 - **Colour / type:** every colour and font is a token at the top of
@@ -129,6 +126,7 @@ Contact is live: `tootiedesigns18@gmail.com` in the `#contact` section (two
   brass ≥4.5:1 — all pass WCAG AA. If you retint `--brass`, re-check it; it sits
   close to the 4.5:1 line on this background.
 - Buttons carry a 44px minimum touch target.
+- The before/after comparison supports dragging, touch, and keyboard arrow keys.
 - Respects `prefers-reduced-motion` — scroll reveals hold still when asked.
 - A `Content-Security-Policy` meta tag restricts sources to self only.
 - No dead/stubbed UI: contact CTAs are real `mailto:` links; placeholder work
