@@ -99,8 +99,8 @@ python3 -m http.server 8000
 
 ## Before this goes live
 
-- **The `#work` section uses a real before/after comparison.** Keep the church
-  name and Before/After labels accurate whenever the screenshots are replaced.
+- **The `#work` section uses real church and school before/after comparisons.**
+  Keep each name and its Before/After labels accurate whenever screenshots are replaced.
 - **The imagery is stock/generated, not photographs of clients.** Fine as
   atmosphere; it stops being fine the moment a caption implies otherwise.
 
@@ -110,8 +110,9 @@ Contact is live: `tootiedesigns18@gmail.com` in the `#contact` section (two
 
 ## Customising
 
-- **Change the comparison:** replace `assets/img/st-ann-before.webp` and
-  `assets/img/st-ann-after.webp`, then update the church name and image
+- **Change the comparisons:** replace `assets/img/st-ann-before.webp` and
+  `assets/img/st-ann-after.webp` for the church, or the corresponding
+  `st-ann-school-*.webp` files for the school. Then update the name and image
   descriptions in the `.comparison` markup in `index.html`. Use screenshots
   with the same viewport dimensions for the cleanest wipe.
 - **Change pricing:** the three `.tier` cards in the `#pricing` section. Keep them
@@ -126,7 +127,7 @@ Contact is live: `tootiedesigns18@gmail.com` in the `#contact` section (two
   brass ≥4.5:1 — all pass WCAG AA. If you retint `--brass`, re-check it; it sits
   close to the 4.5:1 line on this background.
 - Buttons carry a 44px minimum touch target.
-- The before/after comparison supports dragging, touch, and keyboard arrow keys.
+- Both before/after comparisons support dragging, touch, and keyboard arrow keys.
 - Respects `prefers-reduced-motion` — scroll reveals hold still when asked.
 - A `Content-Security-Policy` meta tag restricts sources to self only.
 - No dead/stubbed UI: contact CTAs are real `mailto:` links; placeholder work
