@@ -487,7 +487,7 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 .work-subsection > .comparison { margin-top: clamp(2rem, 4vw, 3rem); }
 .comparison { margin: 0; }
 .comparison-frame {
-  --comparison-position: 50%;
+  --comparison-position: 100%;
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
