@@ -1,0 +1,268 @@
+/* =====================================================================
+   Tootie Chat — intake widget
+   Guided conversation for lead qualification / kickoff
+   ===================================================================== */
+
+/* ---------- Reset / host ---------- */
+.tootie-chat *,
+.tootie-chat *::before,
+.tootie-chat *::after { box-sizing: border-box; }
+
+/* ---------- Launcher ---------- */
+.tootie-chat-launcher {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 940;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tootie-chat-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid var(--line-strong, rgba(22,40,60,0.2));
+  background: linear-gradient(180deg, #8A6529 0%, #6E4F1F 100%);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 30px -8px rgba(110, 79, 31, 0.45);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.tootie-chat-fab:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(110, 79, 31, 0.55); }
+.tootie-chat-fab:active { transform: translateY(0); }
+
+.tootie-chat-pill {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #16283C;
+  background: #FFFFFF;
+  border: 1px solid rgba(22,40,60,0.12);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px -6px rgba(22,40,60,0.12);
+  max-width: 220px;
+  line-height: 1.35;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.tootie-chat-pill.is-hidden { opacity: 0; transform: translateY(6px); pointer-events: none; }
+
+/* ---------- Panel ---------- */
+.tootie-chat-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 950;
+  width: min(420px, calc(100vw - 48px));
+  max-height: min(640px, 80vh);
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid rgba(22,40,60,0.12);
+  border-radius: 18px;
+  box-shadow: 0 22px 60px -16px rgba(22, 40, 60, 0.28);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #4A5A6B;
+  transform-origin: bottom right;
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  pointer-events: none;
+}
+.tootie-chat-panel.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.tootie-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid rgba(22,40,60,0.08);
+}
+.tootie-chat-head-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tootie-chat-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #966F2E 0%, #8A6529 100%);
+  display: grid;
+  place-items: center;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  flex: none;
+}
+.tootie-chat-title {
+  font-weight: 600;
+  color: #16283C;
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+.tootie-chat-subtitle {
+  font-size: 0.74rem;
+  color: #75838F;
+  font-weight: 500;
+}
+
+.tootie-chat-close {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #75838F;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.tootie-chat-close:hover { background: rgba(22,40,60,0.06); color: #16283C; }
+
+/* ---------- Messages ---------- */
+.tootie-chat-body {
+  padding: 16px 16px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.tootie-chat-body::-webkit-scrollbar { width: 6px; }
+.tootie-chat-body::-webkit-scrollbar-thumb { background: rgba(22,40,60,0.18); border-radius: 999px; }
+
+.tootie-chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tootie-chat-bubble {
+  max-width: 88%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 0.96rem;
+  line-height: 1.48;
+  animation: bubbleIn 0.22s ease;
+}
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.tootie-chat-bubble.bot {
+  background: #FFFFFF;
+  color: #16283C;
+  border: 1px solid rgba(22,40,60,0.10);
+  border-bottom-left-radius: 5px;
+  align-self: flex-start;
+}
+.tootie-chat-bubble.user {
+  background: linear-gradient(180deg, #966F2E 0%, #8A6529 100%);
+  color: #FFFFFF;
+  border-bottom-right-radius: 5px;
+  align-self: flex-end;
+}
+.tootie-chat-bubble.system {
+  background: rgba(22,40,60,0.05);
+  color: #4A5A6B;
+  border: 1px dashed rgba(22,40,60,0.12);
+  align-self: center;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* ---------- Choices ---------- */
+.tootie-chat-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+  animation: bubbleIn 0.22s ease;
+}
+.tootie-chat-choice {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: #4A5A6B;
+  background: #FFFFFF;
+  border: 1px solid rgba(22,40,60,0.14);
+  border-radius: 999px;
+  padding: 8px 13px;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.tootie-chat-choice:hover { background: #16283C; color: #FFFFFF; border-color: #16283C; }
+
+/* ---------- Input ---------- */
+.tootie-chat-foot {
+  padding: 12px 14px 14px;
+  border-top: 1px solid rgba(22,40,60,0.08);
+}
+.tootie-chat-input-row {
+  display: flex;
+  gap: 8px;
+}
+.tootie-chat-input {
+  flex: 1;
+  font: inherit;
+  font-size: 0.96rem;
+  color: #16283C;
+  background: #FFFFFF;
+  border: 1px solid rgba(22,40,60,0.16);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.tootie-chat-input::placeholder { color: #75838F; }
+.tootie-chat-input:focus { border-color: #8A6529; box-shadow: 0 0 0 3px rgba(138,101,41,0.14); }
+
+.tootie-chat-send {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, #966F2E 0%, #8A6529 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.22s ease;
+  box-shadow: 0 8px 18px -8px rgba(110,79,31,0.4);
+}
+.tootie-chat-send:hover { transform: translateY(-1px); }
+.tootie-chat-send:active { transform: translateY(0); }
+.tootie-chat-send:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Typography helpers ---------- */
+.tootie-chat-hint {
+  font-size: 0.74rem;
+  color: #75838F;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.tootie-chat-url {
+  color: #8A6529;
+  word-break: break-all;
+}
+.tootie-chat-strong { color: #16283C; font-weight: 600; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  .tootie-chat-panel {
+    right: 12px;
+    bottom: 92px;
+    width: calc(100vw - 24px);
+    max-height: 78vh;
+    border-radius: 16px;
+  }
+  .tootie-chat-launcher { right: 12px; bottom: 14px; }
+}
