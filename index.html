@@ -13,7 +13,7 @@
 <meta property="og:description" content="Custom websites for churches, built and maintained from $100/month. Giving, sermons, events, and prayer requests in one place — with one named point of contact." />
 <meta property="og:site_name" content="Tootie Designs" />
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self'; base-uri 'self'; form-action 'self';" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self'; base-uri 'self'; form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com;" />
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="preload" href="assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin />
@@ -469,6 +469,51 @@
       </div>
     </div>
   </section>
+
+  <!-- ============================ TOOTIE CHAT WIDGET ============================ -->
+  <section class="tootie-chat" id="tootie-chat" aria-label="Tootie site review">
+    <div class="tootie-chat-launcher" data-tootie-chat-launcher>
+      <span class="tootie-chat-pill is-hidden" data-tootie-chat-pill>Let us look at your current site.</span>
+      <button class="tootie-chat-fab" data-tootie-chat-toggle aria-label="Open site review">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="tootie-chat-panel" data-tootie-chat-panel role="dialog" aria-modal="true" aria-label="Site review">
+      <div class="tootie-chat-head">
+        <div class="tootie-chat-head-left">
+          <div class="tootie-chat-mark">TD</div>
+          <div>
+            <div class="tootie-chat-title">Site review</div>
+            <div class="tootie-chat-subtitle">We&rsquo;ll send your summary straight to the team.</div>
+          </div>
+        </div>
+        <button class="tootie-chat-close" data-tootie-chat-toggle aria-label="Close">✕</button>
+      </div>
+
+      <div class="tootie-chat-body">
+        <div class="tootie-chat-messages" data-tootie-chat-messages></div>
+      </div>
+
+      <div class="tootie-chat-foot">
+        <form class="tootie-chat-input-row" data-tootie-chat-form autocomplete="off">
+          <input
+            class="tootie-chat-input"
+            type="text"
+            placeholder="Type your answer..."
+            data-tootie-chat-input
+            maxlength="400"
+            aria-label="Type your answer"
+          />
+          <button class="tootie-chat-send" type="submit">Send</button>
+        </form>
+        <p class="tootie-chat-hint">We&rsquo;ll only use this to reply about your church site.</p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ============================ FOOTER ============================ -->
@@ -496,5 +541,6 @@
 </footer>
 
 <script src="js/main.js" defer></script>
+<script src="js/tootie-chat.js" defer></script>
 </body>
 </html>
