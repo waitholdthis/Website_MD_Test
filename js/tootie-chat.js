@@ -6,21 +6,8 @@
   'use strict';
 
   /* ------------------------------------------------------------------ */
-  /*  Google Form setup                                                 */
+  /*  Delivery                                                           */
   /* ------------------------------------------------------------------ */
-  var DATA_DEBOUNCE_MS = 900;
-  var FORM_FIELDS = [
-    { key: 'timestamp',        entryId: 13548256, transform: ts },
-    { key: 'currentUrl',       entryId: 1900127811, transform: encode },
-    { key: 'biggestFrustration', entryId: 499153733, transform: encode },
-    { key: 'timeline',         entryId: 304230453, transform: encode },
-    { key: 'givingTool',       entryId: 192783645, transform: encode },
-    { key: 'name',             entryId: 783390317, transform: encode },
-    { key: 'email',            entryId: 1274764873, transform: encode },
-    { key: 'phone',            entryId: 684201943, transform: encode }
-  ];
-
-  var FB_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfP4rc_VLHGuJTqPsIwMbSUPqnvZ28XyPpNmrM3Z3Oqbb7A_A/formResponse';
   var BUSY = false;
 
   /* ------------------------------------------------------------------ */
@@ -195,6 +182,34 @@
     }, 1800);
   }
 
+  function suggestBestTime() {
+    try {
+      var h = new Date().getHours();
+      if (h < 12) return 'This morning';
+      if (h < 17) return 'This afternoon';
+      return 'This evening';
+    } catch (e) {
+      return 'Soon';
+    }
+  }
+
+  function buildMailto(d) {
+    var subject = 'New church site review request';
+    var body =
+      'Timestamp: ' + (d.timestamp || new Date().toISOString()) + '\n' +
+      'Current site: ' + (d.currentUrl || 'not provided') + '\n' +
+      'Biggest frustration: ' + (d.biggestFrustration || 'not provided') + '\n' +
+      'Timeline: ' + (d.timeline || 'not provided') + '\n' +
+      'Giving/tooling: ' + (d.givingTool || 'not provided') + '\n' +
+      'Name/church: ' + (d.name || 'not provided') + '\n' +
+      'Email: ' + (d.email || 'not provided') + '\n' +
+      'Phone: ' + (d.phone || 'not provided') + '\n';
+
+    var encodedSubject = encodeURIComponent(subject);
+    var encodedBody = encodeURIComponent(body);
+    return 'mailto:tootiedesigns18@gmail.com?subject=' + encodedSubject + '&body=' + encodedBody;
+  }
+
   /* ------------------------------------------------------------------ */
   /*  Google Forms submit                                                */
   /* ------------------------------------------------------------------ */
@@ -211,66 +226,19 @@
       addBot('I missed a couple of details — ' + missing.join(', ') + ' — but I\'ll still send what I have.');
     }
 
-    var formData = new FormData();
-    formData.append('fvv', '1');
-    formData.append('pageHistory', '0');
-    formData.append('draftResponse', '[]');
-
-    FORM_FIELDS.forEach(function (f) {
-      var raw = '';
-      if (f.key === 'currentUrl') raw = d.currentUrl || '';
-      else if (f.key === 'biggestFrustration') raw = d.biggestFrustration || '';
-      else if (f.key === 'timeline') raw = d.timeline || '';
-      else if (f.key === 'givingTool') raw = d.givingTool || '';
-      else if (f.key === 'name') raw = d.name || '';
-      else if (f.key === 'email') raw = d.email || '';
-      else if (f.key === 'phone') raw = d.phone || '';
-      else raw = f.transform ? f.transform() : '';
-
-      formData.append('entry.' + String(f.entryId), raw || '');
-    });
-
-    if (isMobile()) {
-      addBot(
-        'Saved your answers. On some mobile setups the final send can be blocked — ' +
-        'email <strong>tootiedesigns18@gmail.com</strong> and we\'ll reply right back.'
-      );
+    var mailto = buildMailto(d);
+    var ok = false;
+    try {
+      ok = window.location.href = mailto;
+    } catch (e) {
+      ok = false;
     }
 
-    canBeXhr(function (xhr) {
-      xhr.open('POST', FB_URL, true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.timeout = 7000;
-
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState !== 4) return;
-        if (xhr.status < 400) {
-          addBot('Sent ✓');
-        } else {
-          addBot(
-            'The site review form was saved, but the final send didn\'t complete. ' +
-            'Email us at <strong>tootiedesigns18@gmail.com</strong> and we\'ll reply straight back.'
-          );
-        }
-      };
-
-      xhr.ontimeout = function () {
-        try { xhr.abort(); } catch (e) {}
-        addBot(
-          'Your answers are still here if you want to resend. Otherwise email us at ' +
-          '<strong>tootiedesigns18@gmail.com</strong>.'
-        );
-      };
-
-      xhr.send(new URLSearchParams(formData).toString());
-    });
-  }
-
-  function canBeXhr(fn) {
-    try { fn(new XMLHttpRequest()); } catch (e) {
-      try { fn(new ActiveXObject('Msxml2.XMLHTTP')); } catch (e) {
-        addBot('Your browser blocked the submission. Please email <strong>tootiedesigns18@gmail.com</strong>.');
-      }
+    if (!ok) {
+      addBot(
+        'Your email app didn\'t open. Please send your answers to ' +
+        '<strong>tootiedesigns18@gmail.com</strong> and we\'ll reply straight back.'
+      );
     }
   }
 
@@ -282,7 +250,7 @@
   }
 
   function addUser(text) {
-    addBot(text);
+    addMessage(escapeHtml(text), null, { type: 'user' });
   }
 
   function choiceHtml(choices) {
