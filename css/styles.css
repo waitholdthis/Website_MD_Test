@@ -490,6 +490,27 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 
 .pricing-foot { margin-top: 2.2rem; color: var(--body); font-size: 0.98rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
 
+/* ---------- Church + school ---------- */
+.schools-pair {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch;
+  gap: 1.1rem; margin-top: 0.4rem;
+}
+.schools-site { display: flex; flex-direction: column; padding: 1.7rem 1.6rem; }
+.schools-site .tag-brass { margin-bottom: 0.9rem; }
+.schools-site-line { color: var(--ink); font-size: 1.02rem; line-height: 1.5; flex: 1 1 auto; margin-bottom: 1rem; }
+.schools-site-note {
+  font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.04em;
+  color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.9rem;
+}
+.schools-plus {
+  align-self: center; font-family: var(--f-serif); font-size: 1.9rem;
+  font-weight: 600; color: var(--brass); line-height: 1;
+}
+@media (max-width: 640px) {
+  .schools-pair { grid-template-columns: 1fr; }
+  .schools-plus { padding: 0.2rem 0; }
+}
+
 /* ---------- Before-and-after comparison ---------- */
 .work-subsection {
   margin-top: clamp(4.5rem, 9vw, 7rem);
@@ -601,6 +622,16 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 }
 .panel-body { padding: clamp(1.5rem, 3vw, 2.2rem) clamp(1.5rem, 3vw, 2.4rem); display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem 3rem; align-items: start; }
 .panel-para { color: var(--body); font-size: 1.05rem; line-height: 1.6; }
+.panel-para + .panel-para { margin-top: 1rem; }
+
+.bio-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+.bio-photo {
+  flex: none; width: 96px; height: 96px; border-radius: 999px; object-fit: cover;
+  border: 1px solid rgba(138, 101, 41, 0.4);
+  box-shadow: 0 2px 6px rgba(22, 40, 60, 0.12);
+}
+.bio-name { font-family: var(--f-serif); font-size: 1.2rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+.bio-role { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted); margin-top: 0.2rem; }
 .principles { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .principles li {
   color: var(--body); font-size: 0.96rem; padding: 0.85rem 0; border-top: 1px solid var(--line);
