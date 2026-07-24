@@ -508,7 +508,7 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 }
 @media (max-width: 640px) {
   .schools-pair { grid-template-columns: 1fr; }
-  .schools-plus { padding: 0.2rem 0; }
+  .schools-plus { justify-self: center; padding: 0.1rem 0; }
 }
 
 /* ---------- Before-and-after comparison ---------- */
