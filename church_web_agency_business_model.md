@@ -64,6 +64,8 @@ Four revenue streams, each modeled explicitly in the accompanying workbook (`Rev
 | **Add-on / expansion revenue** | Local SEO, Google Ad Grant management, media/content production — modeled at a $250/mo average per attached client, ramping from a 0% attach rate in Month 1 to a 30% attach rate by Month 12 | The highest-margin, fastest-growing stream — see Section 5 (maintenance/expansion strategy) |
 | **Multi-campus/custom contracts** | ~$1,000+/mo per contract, not modeled in the Year-1 base case (assumed a Year 2+ stream) | Optionality that the model deliberately doesn't count on for Year 1 credibility |
 
+**Website scope by tier:** Foundation includes up to 5 standard content pages, Growth includes 6–12, and Ministry Partner includes up to 20. Additional pages, advanced tools, e-commerce, and custom functionality are scoped and quoted separately. Multi-campus and network sites remain custom contracts.
+
 **Modeled outcome (Year 1, base case):** 21 active clients and **$3,800 MRR** by Month 12, **$40,973 total Year-1 revenue**, per the `Revenue Build` and `P&L` tabs. This is a deliberately conservative, founder-led ramp — not a hockey-stick projection — because the sales motion (cold calling + local relationships) scales linearly with founder time until a channel partnership or a hire changes the slope.
 
 ---
