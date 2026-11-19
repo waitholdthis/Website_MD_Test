@@ -20,7 +20,6 @@
 <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="css/styles.css" />
-<link rel="stylesheet" href="css/tootie-chat.css" />
 </head>
 <body>
 
@@ -63,8 +62,8 @@
           actually call. From <strong>$100 a month</strong>, with no five&#8209;figure cheque up front.
         </p>
         <div class="hero-cta-row">
-          <a class="btn btn-primary" href="#contact">Book a 15-minute call</a>
-          <a class="link-mono" href="#pricing">See the pricing <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-primary" href="#website-review">Request a free website review</a>
+          <a class="btn btn-secondary" href="#work">See the St. Ann redesign</a>
         </div>
       </div>
 
@@ -103,7 +102,7 @@
           <p class="tag tag-brass">01 / The site is years old</p>
           <h3 class="card-title">It doesn&rsquo;t look like you any more.</h3>
           <p class="card-desc">The photos are three pastors out of date, the service times are wrong, and nobody quite remembers who set it up. Visitors notice before they ever walk in.</p>
-          <a class="link-mono card-link" href="#contact">Get a free site review <span aria-hidden="true">&rarr;</span></a>
+          <a class="link-mono card-link" href="#website-review">Get a free site review <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li class="card card--cool">
           <p class="tag tag-brass">02 / You&rsquo;re the tech person now</p>
@@ -526,6 +525,37 @@
     </div>
   </section>
 
+  <section class="section website-review" id="website-review" aria-labelledby="website-review-heading">
+    <div class="wrap website-review-layout">
+      <div>
+        <p class="tag tag-brass">Free church website review</p>
+        <h2 class="section-title" id="website-review-heading">See your website through a first-time visitor&rsquo;s eyes.</h2>
+        <p class="section-note">Send me your church&rsquo;s website. I&rsquo;ll look at it on my phone and email you three changes that would make it easier for someone to find service times, get directions, and know what to expect on their first Sunday.</p>
+      </div>
+      <div class="website-review-intake">
+        <form id="website-review-form" aria-describedby="website-review-delivery" hidden>
+          <label for="review-church">Church name</label>
+          <input id="review-church" name="church" type="text" autocomplete="organization" maxlength="150" required />
+          <label for="review-url">Church website</label>
+          <input id="review-url" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://yourchurch.org" maxlength="1024" required />
+          <label for="review-email">Reply email</label>
+          <input id="review-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+          <div class="website-review-actions">
+            <button class="btn btn-primary" type="submit">Open email draft</button>
+            <button class="btn btn-secondary" type="submit" name="show-message">Show email text</button>
+          </div>
+          <p id="website-review-delivery">Open a draft in your email app or copy the message into webmail. Then send it to tootiedesigns18@gmail.com.</p>
+          <div class="website-review-message" id="website-review-message" hidden>
+            <label for="website-review-draft">Email details to copy</label>
+            <textarea id="website-review-draft" rows="10" readonly></textarea>
+          </div>
+          <p id="website-review-status" role="status"></p>
+        </form>
+        <p><a class="link-mono" href="mailto:tootiedesigns18@gmail.com?subject=Free%20church%20website%20review">Email Parker directly</a> with your church name, website, and reply email.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================ CONTACT ============================ -->
   <section class="section contact" id="contact" aria-labelledby="contact-heading">
     <img class="contact-bg" src="assets/img/church-exterior.webp" alt="" aria-hidden="true" decoding="async" loading="lazy" />
@@ -536,58 +566,16 @@
       <p class="contact-sub">
         Tell me about your church and what&rsquo;s frustrating you about the current site.
         You&rsquo;ll get a straight read on whether I can help &mdash; including if the answer is
-        that you don&rsquo;t need me. No forms, no funnel, no pitch deck.
+        that you don&rsquo;t need me.
       </p>
       <div class="contact-actions">
-        <a class="btn btn-primary btn-lg" href="mailto:tootiedesigns18@gmail.com?subject=Church%20website%20enquiry">Email:</a>
+        <a class="btn btn-primary btn-lg" href="mailto:tootiedesigns18@gmail.com?subject=Schedule%20a%20church%20website%20call">Email to schedule a call</a>
         <a class="link-mono contact-email" href="mailto:tootiedesigns18@gmail.com">tootiedesigns18@gmail.com</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================ TOOTIE CHAT WIDGET ============================ -->
-  <section class="tootie-chat" id="tootie-chat" aria-label="Tootie site review">
-    <div class="tootie-chat-launcher" data-tootie-chat-launcher>
-      <span class="tootie-chat-pill is-hidden" data-tootie-chat-pill>Let us look at your current site.</span>
-      <button class="tootie-chat-fab" data-tootie-chat-toggle aria-label="Open site review">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
 
-    <div class="tootie-chat-panel" data-tootie-chat-panel role="dialog" aria-modal="true" aria-label="Site review">
-      <div class="tootie-chat-head">
-        <div class="tootie-chat-head-left">
-          <div class="tootie-chat-mark">TD</div>
-          <div>
-            <div class="tootie-chat-title">Site review</div>
-            <div class="tootie-chat-subtitle">We&rsquo;ll send your summary straight to the team.</div>
-          </div>
-        </div>
-        <button class="tootie-chat-close" data-tootie-chat-toggle aria-label="Close">✕</button>
-      </div>
-
-      <div class="tootie-chat-body">
-        <div class="tootie-chat-messages" data-tootie-chat-messages></div>
-      </div>
-
-      <div class="tootie-chat-foot">
-        <form class="tootie-chat-input-row" data-tootie-chat-form autocomplete="off">
-          <input
-            class="tootie-chat-input"
-            type="text"
-            placeholder="Type your answer..."
-            data-tootie-chat-input
-            maxlength="400"
-            aria-label="Type your answer"
-          />
-          <button class="tootie-chat-send" type="submit">Send</button>
-        </form>
-        <p class="tootie-chat-hint">We&rsquo;ll only use this to reply about your church site.</p>
-      </div>
-    </div>
-  </section>
 
 </main>
 
@@ -616,6 +604,6 @@
 </footer>
 
 <script src="js/main.js" defer></script>
-<script src="js/tootie-chat.js" defer></script>
+<script src="js/website-review.js" defer></script>
 </body>
 </html>
