@@ -19,7 +19,7 @@
 <link rel="preload" href="assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/styles.css?v=review-2" />
 </head>
 <body>
 
@@ -534,24 +534,30 @@
       </div>
       <div class="website-review-intake">
         <form id="website-review-form" aria-describedby="website-review-delivery" hidden>
-          <label for="review-church">Church name</label>
-          <input id="review-church" name="church" type="text" autocomplete="organization" maxlength="150" required />
-          <label for="review-url">Church website</label>
-          <input id="review-url" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://yourchurch.org" maxlength="1024" required />
-          <label for="review-email">Reply email</label>
-          <input id="review-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+          <div class="website-review-field">
+            <label for="review-church">Church name</label>
+            <input id="review-church" name="church" type="text" autocomplete="organization" maxlength="150" required />
+          </div>
+          <div class="website-review-field">
+            <label for="review-url">Church website</label>
+            <input id="review-url" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://yourchurch.org" maxlength="1024" required />
+          </div>
+          <div class="website-review-field">
+            <label for="review-email">Reply email</label>
+            <input id="review-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+          </div>
           <div class="website-review-actions">
             <button class="btn btn-primary" type="submit">Open email draft</button>
             <button class="btn btn-secondary" type="submit" name="show-message">Show email text</button>
           </div>
-          <p id="website-review-delivery">Open a draft in your email app or copy the message into webmail. Then send it to tootiedesigns18@gmail.com.</p>
+          <p id="website-review-delivery">Open a draft in your email app or copy the message into webmail, then send it.</p>
           <div class="website-review-message" id="website-review-message" hidden>
             <label for="website-review-draft">Email details to copy</label>
             <textarea id="website-review-draft" rows="10" readonly></textarea>
           </div>
           <p id="website-review-status" role="status"></p>
         </form>
-        <p><a class="link-mono" href="mailto:tootiedesigns18@gmail.com?subject=Free%20church%20website%20review">Email Parker directly</a> with your church name, website, and reply email.</p>
+        <p><a href="mailto:tootiedesigns18@gmail.com?subject=Free%20church%20website%20review">Email Parker directly</a> with your church name, website, and reply email.</p>
       </div>
     </div>
   </section>

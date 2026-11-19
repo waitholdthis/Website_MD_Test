@@ -746,41 +746,80 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
   .hero-visual:hover .arch-media { transform: none; }
 }
 
-/* Church website review */
+/* ---------- Church website review ---------- */
+.website-review {
+  border-block: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
 .website-review-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-  gap: clamp(1.5rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 5rem);
 }
 
-.website-review .section-note { margin-top: 1rem; }
+.website-review .tag-brass { margin-bottom: 0.85rem; }
+.website-review .section-title { max-width: 17ch; text-wrap: balance; }
+.website-review .section-note { margin-top: 1.2rem; line-height: 1.65; }
 
 .website-review-intake {
-  padding: clamp(1rem, 4vw, 2rem);
-  border: 1px solid var(--line-strong);
-  border-radius: 1rem;
+  min-width: 0;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
   background: var(--surface);
+  box-shadow: var(--shadow-md);
 }
 
-.website-review-intake form:not([hidden]) { display: grid; gap: 0.65rem; }
-.website-review-intake label { font-weight: 600; }
-.website-review-intake input,
-.website-review-intake textarea {
+.website-review-intake form:not([hidden]) { display: grid; gap: 1rem; }
+.website-review-field { display: grid; gap: 0.35rem; min-width: 0; }
+.website-review-intake label { color: var(--ink); font-size: 0.9375rem; font-weight: 600; }
+
+.website-review-intake :is(input, textarea) {
+  display: block;
   width: 100%;
-  min-width: 0;
-  margin-bottom: 0.45rem;
-  padding: 0.7rem 0.8rem;
+  min-height: 3rem;
+  padding: 0.65rem 0.85rem;
   border: 1px solid var(--line-strong);
-  border-radius: 0.35rem;
-  background: var(--surface);
+  border-radius: 0.5rem;
+  background: var(--bg);
   color: var(--ink);
   font: inherit;
+  font-size: 1rem;
 }
 
-.website-review-intake button { justify-self: start; margin-top: 0.35rem; }
-.website-review-intake p { color: var(--body); }
-.website-review-intake > p { margin-top: 0.75rem; }
+.website-review-intake :is(input, textarea):focus-visible {
+  border-color: var(--brass);
+  outline-offset: 2px;
+}
+
+.website-review-intake textarea { margin-top: 0.4rem; resize: vertical; }
+
+.website-review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.2rem;
+}
+
+.website-review-actions .btn { flex: 1 1 9.5rem; padding-inline: 0.8rem; text-align: center; }
+
+.website-review-intake p {
+  color: var(--body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.website-review-intake > p { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.website-review-intake > p a { color: var(--brass-deep); text-underline-offset: 0.2em; }
 #website-review-status:empty { display: none; }
 
-.website-review-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
-.website-review-message textarea { display: block; resize: vertical; margin-top: 0.4rem; }
+@media (max-width: 48rem) {
+  .website-review-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 34rem) {
+  .website-review-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+}
