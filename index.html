@@ -540,8 +540,15 @@
           <input id="review-url" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://yourchurch.org" maxlength="1024" required />
           <label for="review-email">Reply email</label>
           <input id="review-email" name="email" type="email" autocomplete="email" maxlength="254" required />
-          <button class="btn btn-primary" type="submit">Open email draft</button>
-          <p id="website-review-delivery">Your email app opens a draft. Select Send there to request your review.</p>
+          <div class="website-review-actions">
+            <button class="btn btn-primary" type="submit">Open email draft</button>
+            <button class="btn btn-secondary" type="submit" name="show-message">Show email text</button>
+          </div>
+          <p id="website-review-delivery">Open a draft in your email app or copy the message into webmail. Then send it to tootiedesigns18@gmail.com.</p>
+          <div class="website-review-message" id="website-review-message" hidden>
+            <label for="website-review-draft">Email details to copy</label>
+            <textarea id="website-review-draft" rows="10" readonly></textarea>
+          </div>
           <p id="website-review-status" role="status"></p>
         </form>
         <p><a class="link-mono" href="mailto:tootiedesigns18@gmail.com?subject=Free%20church%20website%20review">Email Parker directly</a> with your church name, website, and reply email.</p>

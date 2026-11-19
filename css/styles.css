@@ -764,7 +764,8 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 
 .website-review-intake form:not([hidden]) { display: grid; gap: 0.65rem; }
 .website-review-intake label { font-weight: 600; }
-.website-review-intake input {
+.website-review-intake input,
+.website-review-intake textarea {
   width: 100%;
   min-width: 0;
   margin-bottom: 0.45rem;
@@ -780,3 +781,6 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
 .website-review-intake p { color: var(--body); }
 .website-review-intake > p { margin-top: 0.75rem; }
 #website-review-status:empty { display: none; }
+
+.website-review-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+.website-review-message textarea { display: block; resize: vertical; margin-top: 0.4rem; }
