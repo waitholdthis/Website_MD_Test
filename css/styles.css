@@ -745,3 +745,38 @@ s { color: var(--muted); text-decoration-thickness: 1px; }
   .btn:hover, .card:hover, .integration-list li:hover,
   .hero-visual:hover .arch-media { transform: none; }
 }
+
+/* Church website review */
+.website-review-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+
+.website-review .section-note { margin-top: 1rem; }
+
+.website-review-intake {
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid var(--line-strong);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.website-review-intake form:not([hidden]) { display: grid; gap: 0.65rem; }
+.website-review-intake label { font-weight: 600; }
+.website-review-intake input {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 0.45rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.35rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.website-review-intake button { justify-self: start; margin-top: 0.35rem; }
+.website-review-intake p { color: var(--body); }
+.website-review-intake > p { margin-top: 0.75rem; }
+#website-review-status:empty { display: none; }
